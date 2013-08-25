@@ -1,0 +1,19 @@
+#!/bin/bash
+
+die() {
+  echo $@ >&2
+  exit 1
+}
+
+SOURCE=$1
+TARGET=$2
+
+[[ -z $SOURCE ]] && die "No source given."
+[[ -z $TARGET ]] && die "No target given."
+
+curl \
+  http://closure-compiler.appspot.com/compile \
+  --data-urlencode js_code@$SOURCE \
+  -d output_info=compiled_code \
+  -o $TARGET \
+  $(perl -lane '/^\/\/ @(.*) (.*)/ && print "-d " . $1 . "=" . $2' $SOURCE)
