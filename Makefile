@@ -1,4 +1,4 @@
 standalone.js:
-	./build index.js $@
+	./compile index.js $@
 
 .PHONY: standalone.js
