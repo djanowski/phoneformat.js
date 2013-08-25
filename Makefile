@@ -1,4 +1,4 @@
-PhoneFormat.js:
-	./build closure.txt $@
+standalone.js:
+	./build index.js $@
 
-.PHONY: PhoneFormat.js
+.PHONY: standalone.js
