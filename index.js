@@ -19,6 +19,62 @@ goog.require('i18n.phonenumbers.PhoneNumberType');
 goog.require('i18n.phonenumbers.PhoneNumberUtil');
 goog.require('i18n.phonenumbers.PhoneNumberUtil.ValidationResult');
 
+var phoneUtil = i18n.phonenumbers.PhoneNumberUtil.getInstance();
+var PNF = i18n.phonenumbers.PhoneNumberFormat;
+var PNT = i18n.phonenumbers.PhoneNumberType;
+
+function parse(number, country_code) {
+  /*
+   * This is a modified version of Socialcam's node-libphonenumber library:
+   * https://github.com/Socialcam/node-libphonenumber/blob/4c799f17a502486cb0795ad71c7cf7f0a2a6b30e/web.js#L24-L69
+   *
+   */
+  var number = phoneUtil.parseAndKeepRawInput(number, country_code);
+  var inumber = phoneUtil.format(number, PNF.E164);
+  var national = phoneUtil.format(number, PNF.NATIONAL);
+
+  var is_valid = phoneUtil.isValidNumber(number);
+  var type = 'UNKNOWN';
+
+  switch (phoneUtil.getNumberType(number)) {
+    case PNT.FIXED_LINE:
+      type = 'FIXED_LINE';
+      break;
+    case PNT.MOBILE:
+      type ='MOBILE';
+      break;
+    case PNT.FIXED_LINE_OR_MOBILE:
+      type ='FIXED_LINE_OR_MOBILE';
+      break;
+    case PNT.TOLL_FREE:
+      type ='TOLL_FREE';
+      break;
+    case PNT.PREMIUM_RATE:
+      type ='PREMIUM_RATE';
+      break;
+    case PNT.SHARED_COST:
+      type ='SHARED_COST';
+      break;
+    case PNT.VOIP:
+      type ='VOIP';
+      break;
+    case PNT.PERSONAL_NUMBER:
+      type ='PERSONAL_NUMBER';
+      break;
+    case PNT.PAGER:
+      type ='PAGER';
+      break;
+    case PNT.UAN:
+      type ='UAN';
+      break;
+    case PNT.UNKNOWN:
+      type ='UNKNOWN';
+      break;
+  }
+
+  return {e164: inumber, national: national, valid: is_valid, type: type};
+}
+
 
 // -------------------------------------------------------------------------
 function countryForE164Number(phone) {
