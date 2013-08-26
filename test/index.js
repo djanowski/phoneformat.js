@@ -6,6 +6,7 @@ describe('PhoneFormat', function() {
     var parsed = PhoneFormat.parse('11 2345 6789', 'ar')
 
     assert(parsed.e164 === '+541123456789')
+    assert(parsed.international === '+54 11 2345-6789')
   })
 
   it('exposes the number type', function() {

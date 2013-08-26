@@ -4,4 +4,4 @@ standalone.js:
 build:
 	component build --dev
 
-.PHONY: standalone.js
+.PHONY: standalone.js build

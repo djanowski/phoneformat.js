@@ -32,6 +32,7 @@ function parse(number, country_code) {
   var number = phoneUtil.parseAndKeepRawInput(number, country_code);
   var inumber = phoneUtil.format(number, PNF.E164);
   var national = phoneUtil.format(number, PNF.NATIONAL);
+  var international = phoneUtil.format(number, PNF.INTERNATIONAL);
 
   var is_valid = phoneUtil.isValidNumber(number);
   var type = 'UNKNOWN';
@@ -72,7 +73,7 @@ function parse(number, country_code) {
       break;
   }
 
-  return {e164: inumber, national: national, valid: is_valid, type: type};
+  return {e164: inumber, national: national, valid: is_valid, type: type, international: international};
 }
 
 
