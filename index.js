@@ -79,11 +79,11 @@ function parse(number, country_code) {
 // -------------------------------------------------------------------------
 function countryForE164Number(phone) {
 	/*
-	
+
 	Return the country code for an e164 formatted number
-	
+
 	phone (String) phone number in e164 format to return the country code for
-	
+
 	*/
 	try {
 		var phone = cleanPhone(phone);
@@ -100,14 +100,14 @@ function countryForE164Number(phone) {
 // -------------------------------------------------------------------------
 function formatNumberForMobileDialing(country, phone) {
 	/*
-	
+
 	Returns a number formatted in such a way that it can be dialed from a mobile
 	phone in a specific region. If the number cannot be reached from the region
 	(e.g. some countries block toll-free numbers from being called outside of the
 	country), the method returns an empty string.
-	
+
 	*/
-	
+
 	try {
 		var phone = cleanPhone(phone);
 		var phoneUtil = i18n.phonenumbers.PhoneNumberUtil.getInstance();
@@ -123,13 +123,13 @@ function formatNumberForMobileDialing(country, phone) {
 // -------------------------------------------------------------------------
 function isValidNumber(phone) {
 	/*
-	
+
 	Tests whether a phone number matches a valid pattern. Note this doesn't
 	verify the number is actually in use, which is impossible to tell by just
 	looking at a number itself.
-	
+
 	*/
-	
+
 	try {
 		var phone = cleanPhone(phone);
 		var phoneUtil = i18n.phonenumbers.PhoneNumberUtil.getInstance();
@@ -143,14 +143,14 @@ function isValidNumber(phone) {
 // -------------------------------------------------------------------------
 function formatE164(country, phone) {
 	/*
-	
+
 	Return the phone number in e164 format
-	
+
 	country (String) 2 digit country code
 	phone (String) phone number to format
-	
+
 	*/
-	
+
 	try {
 		var phone = cleanPhone(phone);
 		var phoneUtil = i18n.phonenumbers.PhoneNumberUtil.getInstance();
@@ -165,17 +165,17 @@ function formatE164(country, phone) {
 }
 
 
-// -------------------------------------------------------------------------  
+// -------------------------------------------------------------------------
 function formatInternational(country, phone) {
 	/*
-	
+
 	Return the phone number in international format
-	
+
 	country (String) 2 digit country code
 	phone (String) phone number to format
-	
+
 	*/
-	
+
 	try {
 		var phone = cleanPhone(phone);
 	    var formatter = new i18n.phonenumbers.AsYouTypeFormatter(country);
@@ -193,14 +193,14 @@ function formatInternational(country, phone) {
 // -------------------------------------------------------------------------
 function formatLocal(country, phone) {
 	/*
-	
+
 	Return the phone number in the format local to the user
-	
+
 	country (String) 2 digit country code
 	phone (String) phone number to format
-	
+
 	*/
-	
+
 	try {
 		var phone = cleanPhone(phone);
 		var phoneUtil = i18n.phonenumbers.PhoneNumberUtil.getInstance();
@@ -217,17 +217,17 @@ function formatLocal(country, phone) {
 		return formatInternational(country, phone);
 	}
 }
-	
+
 // -------------------------------------------------------------------------
 function cleanPhone(phone) {
 	/*
-	
+
 	Remove any non numeric characters from the phone number but leave any plus sign at the beginning
-	
+
 	phone (String) phone number to clean
-	
+
 	*/
-	
+
 	phone = phone.replace(/[^\d\+]/g,'');
 	if (phone.substr(0, 1) == "+") {
 		phone = "+" + phone.replace(/[^\d]/g,'');
@@ -240,13 +240,13 @@ function cleanPhone(phone) {
 // -------------------------------------------------------------------------
 function countryCodeToName(countryCode) {
 	/*
-	
+
 	Convert the country code to a name
-	
+
 	country (String) 2 digit country code
-	
+
 	*/
-	
+
 	var arrCountry = new Array();
 	arrCountry['AF'] = "Afghanistan";
 	arrCountry['AL'] = "Albania";
@@ -488,7 +488,7 @@ function countryCodeToName(countryCode) {
 	arrCountry['YU'] = "Yugoslavia";
 	arrCountry['ZM'] = "Zambia";
 	arrCountry['ZW'] = "Zimbabwe";
-	
+
 	var name = arrCountry[countryCode.toUpperCase()];
 	if (name === undefined) {
 		return "";
