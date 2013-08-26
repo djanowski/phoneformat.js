@@ -1,0 +1,17 @@
+{
+  "name": "PhoneFormat",
+  "repo": "djanowski/phoneformat.js",
+  "description": "",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {
+    "component/assert": "*",
+    "visionmedia/mocha": "*"
+  },
+  "license": "Unlicense",
+  "main": "standalone.js",
+  "scripts": [
+    "standalone.js"
+  ]
+}

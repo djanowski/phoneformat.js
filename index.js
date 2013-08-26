@@ -496,3 +496,7 @@ function countryCodeToName(countryCode) {
 		return name;
 	}
 }
+
+module.exports = {
+  parse: parse
+}
